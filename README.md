@@ -19,6 +19,7 @@ git clone https://github.com/nikhildesai/ThreadPoolServer.git
 # Compile
 
 cd ThreadPoolServer/
+
 mvn compile
 
 # Run tests
@@ -28,3 +29,7 @@ mvn clean test
 # Run server
 
 mvn compile exec:java
+
+# Generate eclipse project files
+
+mvn eclipse:clean eclipse:eclipse
