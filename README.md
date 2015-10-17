@@ -6,6 +6,7 @@ A simple web server that uses a fixed-size thread-pool to handle requests.
 - The maven-exec-plugin is used to run the main method in the WebServerContainer class. 
 - A ServerFactory is used to create a server that listens on a given port and has a given thread-pool size
 - The FixedPoolWebServer itself runs on a separate thread. It will create new Worker threads for each new request until it reaches the limit. After that the threads in the pool are re-used. Incoming requests are kept in a queue if all threads are busy
+- Unit tests as well integration tests can be found under src/test/java and are written using jUnit and EasyMock
 
 # Pre-requisites
 
