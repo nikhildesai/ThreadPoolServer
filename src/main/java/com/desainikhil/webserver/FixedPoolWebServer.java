@@ -62,6 +62,7 @@ public class FixedPoolWebServer implements Runnable, IServer {
 
         new Thread(this).start();
         serverStatus = ServerStatus.STARTED;
+        System.out.println("Server started on port: " + port);
     }
 
     public enum ServerStatus {
