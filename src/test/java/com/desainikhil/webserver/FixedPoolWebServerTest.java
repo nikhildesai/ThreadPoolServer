@@ -12,14 +12,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.desainikhil.webserver.FixedPoolWebServer.ServerStatus;
-
 public class FixedPoolWebServerTest extends TestCase {
 
     private FixedPoolWebServer fixedPoolWebServer;
     private ExecutorService executorService;
     private ServerSocket serverSocket;
-    private Socket socket;
 
     @Before
     public void setUp() throws NoSuchFieldException, SecurityException, IllegalArgumentException,
@@ -27,7 +24,6 @@ public class FixedPoolWebServerTest extends TestCase {
         serverSocket = EasyMock.createMock(ServerSocket.class);
         executorService = EasyMock.createMock(ExecutorService.class);
         fixedPoolWebServer = new FixedPoolWebServer(8080, 5);
-        socket = EasyMock.createMock(Socket.class);
         
         // set fields using reflection
         Field executorServiceField = FixedPoolWebServer.class.getDeclaredField("executorService");
