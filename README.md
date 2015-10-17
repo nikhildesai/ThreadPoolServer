@@ -1,6 +1,10 @@
 # ThreadPoolServer
 A simple web server that uses a fixed-size thread-pool to handle requests. 
 
+# Supported requests
+
+This web server only supports 'GET /' e.g. curl http://localhost:8080. This will return HTTP 200 OK with a success message
+  
 # Design
 
 - The maven-exec-plugin is used to run the main method in the WebServerContainer class. 
