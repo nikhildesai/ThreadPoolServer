@@ -2,6 +2,7 @@ package com.desainikhil.webserver;
 
 import java.lang.reflect.Field;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 
 import junit.framework.TestCase;
@@ -18,6 +19,7 @@ public class FixedPoolWebServerTest extends TestCase {
     private FixedPoolWebServer fixedPoolWebServer;
     private ExecutorService executorService;
     private ServerSocket serverSocket;
+    private Socket socket;
 
     @Before
     public void setUp() throws NoSuchFieldException, SecurityException, IllegalArgumentException,
@@ -25,7 +27,8 @@ public class FixedPoolWebServerTest extends TestCase {
         serverSocket = EasyMock.createMock(ServerSocket.class);
         executorService = EasyMock.createMock(ExecutorService.class);
         fixedPoolWebServer = new FixedPoolWebServer(8080, 5);
-
+        socket = EasyMock.createMock(Socket.class);
+        
         // set fields using reflection
         Field executorServiceField = FixedPoolWebServer.class.getDeclaredField("executorService");
         executorServiceField.setAccessible(true);
@@ -75,14 +78,4 @@ public class FixedPoolWebServerTest extends TestCase {
         }
     }
 
-    public void testStart_serverStartedCorrectly() throws Exception {
-        Field serverStatusField = FixedPoolWebServer.class.getDeclaredField("serverStatus");
-        serverStatusField.setAccessible(true);
-        serverStatusField.set(fixedPoolWebServer, FixedPoolWebServer.ServerStatus.NOT_STARTED);
-        
-        fixedPoolWebServer.start();
-        
-        FixedPoolWebServer.ServerStatus serverStatus = (ServerStatus) serverStatusField.get(fixedPoolWebServer);
-        Assert.assertEquals(FixedPoolWebServer.ServerStatus.STARTED, serverStatus);
-    }
 }

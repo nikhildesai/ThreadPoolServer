@@ -49,21 +49,11 @@ public class FixedPoolServerIntegrationTest {
     }
 
     @Test
-    public void testInvalidServerType() throws Exception {
-        try {
-            server = ServerFactory.createServer(null, 8004, 5); // null ServerType
-            Assert.fail("Should have thrown exception");
-        } catch (IllegalArgumentException e) {
-            Assert.assertEquals("ServerType cannot be null", e.getMessage());
-        }
-    }
-
-    @Test
     public void testStoppingMoreThanOnce() throws Exception {
         server = ServerFactory.createServer(ServerType.FixedPoolServer, 8083, 3);
         server.start();
         server.stop();
-        server.stop(); // should not throw exception
+        server.stop();
     }
 
     @Test
